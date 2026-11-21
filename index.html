@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Abdirisak Omar's Portfolio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Abdirisak Omar: projects in AI, cloud and security. Student at Normandale, aiming for SOC analyst.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500;62..125,800;62..125,900&family=Public+Sans:wght@400;600;700&display=swap">
+<style>
+  /* Layout: a shipping manifest: a list of "shipments" (projects) with a delivery status. */
+  :root {
+    --ground: #ECEEEA;   /* warehouse concrete */
+    --panel: #F7F8F5;
+    --ink: #18212B;
+    --steel: #4F5C69;
+    --line: #C7CDC6;
+    --hivis: #F2BE0A;    /* safety tape yellow */
+    --hivis-ink: #18212B;
+    --live: #1D7A4C;
+    --done: #2F5D8A;
+    --wip: #A35F00;
+    --display: "Archivo", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+    --body: "Public Sans", "Segoe UI", system-ui, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #11161C; --panel: #18202A; --ink: #E7ECEF; --steel: #9CA9B5; --line: #2C3743;
+      --hivis: #F2BE0A; --hivis-ink: #11161C; --live: #4CC38A; --done: #78A9DB; --wip: #E6A23C;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #11161C; --panel: #18202A; --ink: #E7ECEF; --steel: #9CA9B5; --line: #2C3743;
+    --hivis: #F2BE0A; --hivis-ink: #11161C; --live: #4CC38A; --done: #78A9DB; --wip: #E6A23C;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  body { background: var(--ground); color: var(--ink); font: 400 1.0625rem/1.6 var(--body); -webkit-font-smoothing: antialiased; }
+  a { color: inherit; }
+  a:focus-visible, button:focus-visible { outline: 3px solid var(--hivis); outline-offset: 3px; }
+  .wrap {
+    max-width: 1040px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+  h1, h2, h3 { font-family: var(--display); margin: 0; text-wrap: balance; }
+
+  /* top bar */
+  .top { padding-block: 20px; }
+  .top .wrap { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .mark { font: 900 1.05rem/1 var(--display); font-stretch: 75%; text-decoration: none; letter-spacing: .01em; }
+  .top nav { display: flex; gap: 20px; flex-wrap: wrap; font-weight: 600; font-size: .95rem; }
+  .top nav a { text-decoration: none; color: var(--steel); }
+  .top nav a:hover { color: var(--ink); }
+
+  /* hero */
+  .hero { padding-block: 40px 44px; }
+  .hero h1 {
+    font-weight: 900; font-stretch: 62%; line-height: .86; letter-spacing: -.01em;
+    font-size: clamp(4.2rem, 17vw, 11rem);
+  }
+  .hero .lede { margin: 22px 0 0; max-width: 34ch; font: 500 clamp(1.3rem, 3.2vw, 1.75rem)/1.3 var(--display); font-stretch: 100%; }
+  .hero .bio { margin: 16px 0 0; max-width: 62ch; color: var(--steel); }
+  .cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 26px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px; min-height: 46px; padding: 0 20px; border-radius: 4px;
+    font-weight: 700; text-decoration: none; border: 2px solid var(--ink); background: transparent; color: var(--ink);
+    font-family: var(--body); font-size: 1rem; cursor: pointer;
+  }
+  .btn.solid { background: var(--ink); color: var(--ground); }
+
+
+  /* sections */
+  section.block { padding-block: 56px 8px; }
+  .block-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; border-bottom: 2px solid var(--ink); padding-bottom: 10px; }
+  .block-head h2 { font-size: clamp(1.9rem, 5vw, 2.6rem); font-weight: 900; font-stretch: 70%; }
+  .block-head p { margin: 0; color: var(--steel); font-size: .95rem; }
+
+  /* manifest rows */
+  .manifest { list-style: none; margin: 0; padding: 0; }
+  .ship {
+    display: grid; grid-template-columns: 7.5rem minmax(0, 1fr) auto; gap: 6px 28px;
+    padding-block: 26px; border-bottom: 1px solid var(--line); align-items: start;
+  }
+  .ship-no { color: var(--steel); font-size: .85rem; font-weight: 600; padding-top: 6px; font-variant-numeric: tabular-nums; }
+  .ship-no b { display: block; color: var(--ink); font: 800 1.05rem/1.2 var(--display); font-stretch: 80%; }
+  .ship h3 { font-size: clamp(1.5rem, 3.6vw, 2rem); font-weight: 800; font-stretch: 80%; line-height: 1.05; }
+  .ship p { margin: 8px 0 0; max-width: 60ch; }
+  .stack { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0 0; padding: 0; list-style: none; }
+  .stack li { font-size: .82rem; font-weight: 600; padding: 3px 9px; border: 1px solid var(--line); border-radius: 3px; background: var(--panel); color: var(--steel); }
+  .links { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 14px; font-weight: 700; }
+  .links a { text-underline-offset: 4px; text-decoration-thickness: 2px; text-decoration-color: var(--hivis); }
+  .links span { color: var(--steel); font-weight: 600; }
+  .status {
+    justify-self: end; display: inline-flex; align-items: center; gap: 8px; white-space: nowrap;
+    font-weight: 700; font-size: .85rem; padding: 5px 12px; border-radius: 999px; border: 2px solid currentColor; margin-top: 4px;
+  }
+  .status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+  .status.live { color: var(--live); }
+  .status.done { color: var(--done); }
+  .status.wip { color: var(--wip); }
+  @media (max-width: 640px) {
+    .ship { grid-template-columns: minmax(0, 1fr) auto; }
+    .ship-no { grid-column: 1 / -1; padding-top: 0; display: flex; gap: 8px; align-items: baseline; }
+    .ship-no b { display: inline; }
+    .ship-body { grid-column: 1 / -1; grid-row: 3; }
+    .status { grid-column: 2; grid-row: 1; margin-top: 0; }
+  }
+
+  /* skills */
+  .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 28px; padding-block: 26px 0; margin: 0; }
+  .skills dt { font: 800 1.15rem/1.2 var(--display); font-stretch: 80%; margin-bottom: 6px; }
+  .skills dd { margin: 0; color: var(--steel); }
+
+  /* contact */
+  .contact { padding-block: 26px 0; display: grid; gap: 18px; }
+  .email-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+  .email { font: 800 clamp(1.4rem, 5.2vw, 2.6rem)/1.1 var(--display); font-stretch: 75%; user-select: all; overflow-wrap: anywhere; min-width: 0; }
+  footer { padding-block: 56px 40px; color: var(--steel); font-size: .9rem; }
+</style>
+</head>
+<body style="margin:0">
+
+<header class="top">
+  <div class="wrap">
+    <a class="mark" href="#">Abdirisak Omar</a>
+    <nav aria-label="Sections">
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <h1>Abdirisak Omar</h1>
+      <div class="cta">
+        <a class="btn solid" href="#projects">See projects</a>
+        <a class="btn" href="https://github.com/abdirisak-dev01" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="block" id="projects">
+    <div class="wrap">
+      <div class="block-head">
+        <h2>Projects</h2>
+        <p>3 shipments. Featured project first.</p>
+      </div>
+      <ul class="manifest">
+        <li class="ship">
+          <div class="ship-no">Featured</div>
+          <div class="ship-body">
+            <h3>Dream Health AI</h3>
+            <p>A meal-logging helper for users around the world, in English, Spanish, French, Arabic and Mandarin. People type or text what they ate in everyday words, check the calories, and confirm before anything is saved. It tracks the day against their goal and sends reminders, with text-message consent and STOP built in. Covered by 104 automated tests.</p>
+            <ul class="stack"><li>Python</li><li>FastAPI</li><li>PostgreSQL</li><li>Docker</li><li>JavaScript</li><li>pytest</li></ul>
+            <div class="links"><a href="https://github.com/abdirisak-dev01/dream-health-ai" target="_blank" rel="noopener">Code on GitHub</a><a href="https://youtu.be/Mpf_ZdUS4s0" target="_blank" rel="noopener">Watch demo video</a></div>
+          </div>
+          <span class="status done">Complete</span>
+        </li>
+        <li class="ship">
+          <div class="ship-no">Web + AI</div>
+          <div class="ship-body">
+            <h3>Truck Finder</h3>
+            <p>An AI-powered search for Class 8 semi-trucks. It scores listings and removes duplicates, has a password-protected admin dashboard, and a public website for buyers.</p>
+            <ul class="stack"><li>Node.js</li><li>Express</li><li>Claude API</li><li>Telegram Bot API</li><li>GitHub</li></ul>
+            <div class="links"><a href="https://truck-finder.onrender.com" target="_blank" rel="noopener">Live site</a></div>
+          </div>
+          <span class="status live">Live</span>
+        </li>
+        <li class="ship">
+          <div class="ship-no">Data + AI</div>
+          <div class="ship-body">
+            <h3>Warehouse AI Insights</h3>
+            <p>Takes a warehouse inventory spreadsheet, processes the data, and uses the Claude API to write plain-English insights a manager can act on. Every line of code is commented for readers.</p>
+            <ul class="stack"><li>Python</li><li>Excel</li><li>Claude API</li></ul>
+            <div class="links"><a href="https://github.com/abdirisak-dev01/warehouse-ai-insights" target="_blank" rel="noopener">Code on GitHub</a></div>
+          </div>
+          <span class="status done">Complete</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block" id="skills">
+    <div class="wrap">
+      <div class="block-head"><h2>Skills</h2></div>
+      <dl class="skills">
+        <div><dt>Programming Languages</dt><dd>Python, SQL, JavaScript, TypeScript, PowerShell, Bash/Shell Scripting</dd></div>
+        <div><dt>Backend</dt><dd>FastAPI, Node.js, Express, PostgreSQL, REST APIs</dd></div>
+        <div><dt>Cloud and DevOps</dt><dd>AWS, Docker, Docker Compose, GitHub, automated testing</dd></div>
+        <div><dt>AI</dt><dd>Generative Artificial Intelligence (GenAI), Large Language Models (LLMs), Prompt Engineering, AI-Powered Automation, AI Tools Integration</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="block" id="contact">
+    <div class="wrap">
+      <div class="block-head"><h2>Contact</h2></div>
+      <div class="contact">
+        <div class="email-row">
+          <span class="email" id="email">Abdirisak8427@gmail.com</span>
+          <button class="btn" type="button" id="copy">Copy email</button>
+        </div>
+        <div class="links"><a href="https://github.com/abdirisak-dev01" target="_blank" rel="noopener">github.com/abdirisak-dev01</a></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Abdirisak Omar. All rights reserved. Bloomington, Minnesota.</div>
+</footer>
+
+<script>
+  (function () {
+    var btn = document.getElementById("copy");
+    var email = document.getElementById("email");
+    btn.addEventListener("click", function () {
+      var text = email.textContent.trim();
+      var done = function () { btn.textContent = "Copied"; setTimeout(function () { btn.textContent = "Copy email"; }, 1800); };
+      var fallback = function () {
+        var r = document.createRange(); r.selectNodeContents(email);
+        var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+        btn.textContent = "Selected. Press Ctrl+C";
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done, fallback);
+      } else { fallback(); }
+    });
+  })();
+</script>
+</body>
+</html>
